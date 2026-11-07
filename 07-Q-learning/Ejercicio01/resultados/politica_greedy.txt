@@ -1,0 +1,15 @@
+Semilla: 7
+Episodios: 500
+α=0.5, γ=1.0, ε=0.1
+
+Política greedy:
+ →   →   →   ↑   →   →   →   →   →   →   ↓   ↓ 
+ ↑   →   →   →   →   ↓   ↓   →   →   ↓   ↓   ↓ 
+ →   →   →   →   →   →   →   →   →   →   →   ↓ 
+S↑   C   C   C   C   C   C   C   C   C   C   G 
+
+Camino: 3,0 -> 2,0 -> 2,1 -> 2,2 -> 2,3 -> 2,4 -> 2,5 -> 2,6 -> 2,7 -> 2,8 -> 2,9 -> 2,10 -> 2,11 -> 3,11
+Acciones: N E E E E E E E E E E E S
+Llegó a la meta: sí
+Pasos: 13
+Retorno greedy: -13
