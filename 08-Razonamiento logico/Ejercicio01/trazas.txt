@@ -1,0 +1,128 @@
+File: kb/biblioteca.yaml
+Facts:
+  Estudiante(Ana)
+  Estudiante(Luis)
+  Profesor(Marta)
+  TieneCredencial(Ana)
+  TieneCredencial(Marta)
+  HorarioNocturno(Hoy)
+Rules:
+  R_miembro_est:  Estudiante(x) ∧ TieneCredencial(x)  →  Miembro(x)
+  R_miembro_prof:  Profesor(x)  →  Miembro(x)
+  R_acceso:  Miembro(x) ∧ HorarioNocturno(Hoy)  →  AccesoNoche(x)
+  R_beca:  Estudiante(x) ∧ TieneCredencial(x)  →  Becario(x)
+Query: AccesoNoche(Ana)
+
+========================================================================
+CONSULTA: AccesoNoche(Ana)
+========================================================================
+ENCADENAMIENTO HACIA ADELANTE
+Hechos iniciales: Estudiante(Ana), Estudiante(Luis), Profesor(Marta), TieneCredencial(Ana), TieneCredencial(Marta), HorarioNocturno(Hoy)
+Consulta: AccesoNoche(Ana)
+Ronda 1:
+  R_miembro_est {x=Ana} => Miembro(Ana)
+  R_miembro_prof {x=Marta} => Miembro(Marta)
+  R_beca {x=Ana} => Becario(Ana)
+Ronda 2:
+  R_acceso {x=Ana} => AccesoNoche(Ana)
+  R_acceso {x=Marta} => AccesoNoche(Marta)
+Ronda 3:
+  No se encontraron hechos nuevos. Fin.
+Resultado: AccesoNoche(Ana) => SÍ
+Hechos inferidos: Miembro(Ana), Miembro(Marta), Becario(Ana), AccesoNoche(Ana), AccesoNoche(Marta)
+
+ENCADENAMIENTO HACIA ATRÁS
+Consulta: AccesoNoche(Ana)
+META AccesoNoche(Ana)
+  REGLA R_acceso
+  META Miembro(Ana)
+    REGLA R_miembro_est
+    META Estudiante(Ana)
+      HECHO Estudiante(Ana)
+    META TieneCredencial(Ana)
+      HECHO TieneCredencial(Ana)
+  META HorarioNocturno(Hoy)
+    HECHO HorarioNocturno(Hoy)
+Resultado: AccesoNoche(Ana) => SÍ
+Metas visitadas: AccesoNoche(Ana), Miembro(Ana), Estudiante(Ana), TieneCredencial(Ana), HorarioNocturno(Hoy)
+
+RESUMEN AccesoNoche(Ana): ADELANTE=SÍ; ATRÁS=SÍ
+
+========================================================================
+CONSULTA: AccesoNoche(Luis)
+========================================================================
+ENCADENAMIENTO HACIA ADELANTE
+Hechos iniciales: Estudiante(Ana), Estudiante(Luis), Profesor(Marta), TieneCredencial(Ana), TieneCredencial(Marta), HorarioNocturno(Hoy)
+Consulta: AccesoNoche(Luis)
+Ronda 1:
+  R_miembro_est {x=Ana} => Miembro(Ana)
+  R_miembro_prof {x=Marta} => Miembro(Marta)
+  R_beca {x=Ana} => Becario(Ana)
+Ronda 2:
+  R_acceso {x=Ana} => AccesoNoche(Ana)
+  R_acceso {x=Marta} => AccesoNoche(Marta)
+Ronda 3:
+  No se encontraron hechos nuevos. Fin.
+Resultado: AccesoNoche(Luis) => NO
+Hechos inferidos: Miembro(Ana), Miembro(Marta), Becario(Ana), AccesoNoche(Ana), AccesoNoche(Marta)
+
+ENCADENAMIENTO HACIA ATRÁS
+Consulta: AccesoNoche(Luis)
+META AccesoNoche(Luis)
+  REGLA R_acceso
+  META Miembro(Luis)
+    REGLA R_miembro_est
+    META Estudiante(Luis)
+      HECHO Estudiante(Luis)
+    META TieneCredencial(Luis)
+    FALLO TieneCredencial(Luis)
+    RETROCESO R_miembro_est
+    REGLA R_miembro_prof
+    META Profesor(Luis)
+    FALLO Profesor(Luis)
+    RETROCESO R_miembro_prof
+  FALLO Miembro(Luis)
+  RETROCESO R_acceso
+FALLO AccesoNoche(Luis)
+Resultado: AccesoNoche(Luis) => NO
+Metas visitadas: AccesoNoche(Luis), Miembro(Luis), Estudiante(Luis), TieneCredencial(Luis), Profesor(Luis)
+
+RESUMEN AccesoNoche(Luis): ADELANTE=NO; ATRÁS=NO
+
+========================================================================
+CONSULTA: AccesoNoche(Marta)
+========================================================================
+ENCADENAMIENTO HACIA ADELANTE
+Hechos iniciales: Estudiante(Ana), Estudiante(Luis), Profesor(Marta), TieneCredencial(Ana), TieneCredencial(Marta), HorarioNocturno(Hoy)
+Consulta: AccesoNoche(Marta)
+Ronda 1:
+  R_miembro_est {x=Ana} => Miembro(Ana)
+  R_miembro_prof {x=Marta} => Miembro(Marta)
+  R_beca {x=Ana} => Becario(Ana)
+Ronda 2:
+  R_acceso {x=Ana} => AccesoNoche(Ana)
+  R_acceso {x=Marta} => AccesoNoche(Marta)
+Ronda 3:
+  No se encontraron hechos nuevos. Fin.
+Resultado: AccesoNoche(Marta) => SÍ
+Hechos inferidos: Miembro(Ana), Miembro(Marta), Becario(Ana), AccesoNoche(Ana), AccesoNoche(Marta)
+
+ENCADENAMIENTO HACIA ATRÁS
+Consulta: AccesoNoche(Marta)
+META AccesoNoche(Marta)
+  REGLA R_acceso
+  META Miembro(Marta)
+    REGLA R_miembro_est
+    META Estudiante(Marta)
+    FALLO Estudiante(Marta)
+    RETROCESO R_miembro_est
+    REGLA R_miembro_prof
+    META Profesor(Marta)
+      HECHO Profesor(Marta)
+  META HorarioNocturno(Hoy)
+    HECHO HorarioNocturno(Hoy)
+Resultado: AccesoNoche(Marta) => SÍ
+Metas visitadas: AccesoNoche(Marta), Miembro(Marta), Estudiante(Marta), Profesor(Marta), HorarioNocturno(Hoy)
+
+RESUMEN AccesoNoche(Marta): ADELANTE=SÍ; ATRÁS=SÍ
+
